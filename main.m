@@ -6,7 +6,7 @@ directory.data_dir = fullfile(directory.home_dir,'data');
 directory.result_dir = fullfile(directory.home_dir,'result');
 
 % setting
-geometry_id = 2; % 1: atrium, 2: slab
+geometry_id = 1; % 1: atrium, 2: slab
 
 % load data
 cd(directory.data_dir);
