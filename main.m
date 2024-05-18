@@ -18,11 +18,11 @@ elseif geometry_id == 2
     load('slab_geometry.mat');
 end
 cd(directory.home_dir);
-t_final = simulation_input.t_final;
+t_final = 500; % unit: ms
 dt = 0.01; % unit: ms
 
 % run simulation
-simulation_result_file_name = 'simulation_result'; % c++ computed simulation result file name
+simulation_result_file_name = 'simulation_result';
 tic; % start timer
 sim_v_voxel = compute_simulation(simulation_input);
 action_potential_voxel = sim_v_voxel';
@@ -48,7 +48,7 @@ if debug_plot == 1
 end
 
 % movie played on triangular mesh
-debug_plot = 0;
+debug_plot = 1;
 if debug_plot == 1
     sim_v_mesh = sim_v_voxel(geometry.id_mapping.voxel_id_for_each_vertex,:);   
     action_potential = sim_v_mesh';
@@ -63,5 +63,5 @@ if debug_plot == 1
     data.signal = action_potential_phase;
     data.az = 10;
     data.el = 60;
-    play_movie(directory,['simulation_triangular_mesh_',num2str(code_type)],'triangular_mesh',data,v_gate_vertex(1),1,1:10:size(action_potential_phase,1));
+    play_movie(directory,['simulation_triangular_mesh_',num2str(geometry_id)],'triangular_mesh',data,v_gate_vertex(1),1,1:10:size(action_potential_phase,1));
 end
